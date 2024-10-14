@@ -1,0 +1,138 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "JSON Merge Patch API",
+    "description": "API to experiment with [JSON Merge Patch](https://datatracker.ietf.org/doc/html/rfc7386)."
+  },
+  "paths": {
+    "/apply/{targetId}": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "patch": {
+        "summary": "Apply Patch",
+        "description": "Apply a JSON Merge Patch formatted patch to the JSON uploaded to `targetId`.",
+        "requestBody": {
+          "required": true,
+          "description": "Body containing the patch to be applied.",
+          "content": {
+            "application/merge-patch+json": {
+              "schema": {
+                "title": "The JSON Merge Patch",
+                "description": "Send the JSON Merge Patch directly in the request body",
+                "type": "object",
+                "examples": [{
+                  "title": null,
+                  "type": "book",
+                  "data": {
+                    "age": 4
+                  }
+                }]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "examples": [
+                    {
+                      "title": "Changed title",
+                      "type": "book",
+                      "data": {
+                        "someNewProperty": "wow",
+                        "age": 4
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "default",
+            "module": "$import(./modules/apply)",
+            "options": {}
+          },
+          "policies": {
+            "inbound": [
+              "rate-limit-inbound"
+            ]
+          }
+        },
+        "operationId": "3e3f3005-6790-44c6-a3f6-7b1ad25d2f4e"
+      }
+    },
+    "/upload": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "post": {
+        "summary": "Upload JSON",
+        "description": "Upload a JSON document to be patched.",
+        "requestBody": {
+          "description": "The JSON to be uploaded.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Your JSON file",
+                "description": "Send over a small JSON file in the request body.",
+                "type": "object",
+                "examples": [
+                  {
+                    "title": "Hello world",
+                    "summary": "A simple summary",
+                    "data": {
+                      "age": 3
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Upload was successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "targetId": {
+                      "type": "string"
+                    }
+                  },
+                  "examples": [{
+                    "targetId": "abc1234"
+                  }]
+                }
+              }
+            }
+          }
+        },
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "default",
+            "module": "$import(./modules/upload)",
+            "options": {}
+          },
+          "policies": {
+            "inbound": [
+              "rate-limit-inbound"
+            ]
+          }
+        },
+        "operationId": "1b60bf20-2c91-4f65-b89a-207b59475657"
+      }
+    }
+  }
+}
