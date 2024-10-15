@@ -21,7 +21,7 @@ curl --request POST \
 '
 ```
 
-The API will return a 200 response with the `targgetId`:
+The API will return a 200 response with the `targetId`:
 ```json
 {
   "targetId": "abc1234"
