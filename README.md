@@ -1,4 +1,8 @@
-## Zuplo API
+## JSON Merge Patch API
+
+Repo for [api.jsonmergepatch.com](api.jsonmergepatch.com). If you're interested in learning more about JSON Merge Patch - [read our guide](https://zuplo.com/blog/2024/10/11/what-is-json-merge-patch).
+
+For [www.jsonmergepatch.com](www.jsonmergepatch.com) see [this repo](https://github.com/zuplo-samples/json-merge-patch-www)
 
 This is a Zuplo API that was created with
 [`create-zuplo-api`](https://zuplo.com/docs).
