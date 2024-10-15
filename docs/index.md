@@ -1,43 +1,64 @@
-# My API
+# Getting Started
 
-You can write full markdown in these documents. Syntax highlighting and full
-Github Flavored markdown are supported. To learn more about customizing the
-documentation of this developer portal
-[see the documentation](https://zuplo.com/docs/developer-portal/adding-pages).
+The JSON Merge Patch API allows you to upload JSON documents and apply JSON Merge Patch operations to them.
 
-```ts
-const response = await fetch("https://echo.zuplo.io", {
-  headers: {
-    "content-type": "application/json",
-  },
-});
+## Upload a JSON
 
-const data = await response.json();
-console.log(data);
+The first step is to upload a JSON object to perform merge-patches on.
+
+```shell
+curl --request POST \
+  --url https://api.jsonmergepatch.com/upload \
+  --header 'Content-Type: application/json' \
+  --data '
+{
+  "title": "Hello world",
+  "summary": "A simple summary",
+  "data": {
+    "age": 3
+  }
+}
+'
 ```
 
-## Labore et Dolore
+The API will return a 200 response with the `targgetId`:
+```json
+{
+  "targetId": "abc1234"
+}
+```
+This `targetId` is a unique identifier for your JSON object.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-culpa qui officia deserunt mollit anim id est laborum.
 
-| Item            | Description                                  | Quanity |
-| --------------- | -------------------------------------------- | ------- |
-| ullamco laboris | reprehenderit in voluptate velit esse cillum | 21      |
-| Excepteur sint  | tempor incididunt ut labore                  | 1       |
-| anim id est     | irure dolor in reprehenderit in voluptate    | 82      |
-| non proiden     | cupidatat non proident, sunt in              | 53      |
+## Patching a JSON
 
-## Aliquip pariatur
+Make a call to the `/apply/{targetId}` endpoint with a Merge Patch in the body to apply it.
 
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-deserunt mollit anim id est laborum.
+```shell
+curl --request PATCH \
+  --url https://api.jsonmergepatch.com/apply/abc1234
+  --header 'Content-Type: application/merge-patch+json'
+  --data '
+{
+  "title": "Changed title",
+  "type": "book"
+  "summary": null,
+  "data": {
+    "someNewProperty": "wow"
+    "age": 4
+  }
+}
+'
+```
 
-- **Item 1** - ullamco laboris nisi ut aliquip ex ea commodo
-- **Item 2** - ullamco laboris nisi ut aliquip ex ea commodo
-- **Item 3** - ullamco laboris nisi ut aliquip ex ea commodo
-- **Item 4** - ullamco laboris nisi ut aliquip ex ea commodo
+The API will return the result of the Merge Patch:
+```json
+{
+  "title": "Changed title",
+  "type": "book",
+  "data": {
+    "someNewProperty": "wow",
+    "age": 4
+  }
+}
+```
