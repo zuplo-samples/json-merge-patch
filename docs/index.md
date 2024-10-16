@@ -2,6 +2,10 @@
 
 The JSON Merge Patch API allows you to upload JSON documents and apply JSON Merge Patch operations to them.
 
+You can learn more about JSON Merge Patch [in this article](https://zuplo.com/blog/2024/10/11/what-is-json-merge-patch).
+
+Created with ❤️ by [Zuplo](https://zuplo.com?utm_source=json-merge-patch)
+
 ## Upload a JSON
 
 The first step is to upload a JSON object to perform merge-patches on.
