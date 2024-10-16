@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.0",
     "title": "JSON Merge Patch API",
-    "description": "API to experiment with [JSON Merge Patch](https://datatracker.ietf.org/doc/html/rfc7386)."
+    "description": "API to experiment with [JSON Merge Patch](https://datatracker.ietf.org/doc/html/rfc7386). \n We also have an [interactive web tool](https://www.jsonmergepatch.com/). \n Created with ❤️ by [Zuplo](https://zuplo.com?utm_source=json-merge-patch)"
   },
   "paths": {
     "/apply/{targetId}": {
