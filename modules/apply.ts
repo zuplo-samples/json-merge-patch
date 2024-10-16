@@ -53,7 +53,8 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
   }
   const binJson = await binRes.json();
   const patchedJson = apply(binJson.record, patch);
-  return HttpProblems.ok(request, context, {
-    patchedJson
-  })
+  return new Response(JSON.stringify(patchedJson), {
+    status: 200,
+    statusText: "OK",
+  });
 }
