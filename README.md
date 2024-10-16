@@ -1,4 +1,9 @@
-## JSON Merge Patch API
+# JSON Merge Patch API
+
+<picture width="200px" height="200px">
+  <source media="(prefers-color-scheme: dark)" srcset="https://svgshare.com/i/1BbK.svg">
+  <img alt="JSON Merge Patch logo" src="https://svgshare.com/i/1B_h.svg" width="400px" height="400px">
+</picture>
 
 Repo for [api.jsonmergepatch.com](https://api.jsonmergepatch.com/docs). If you're interested in learning more about JSON Merge Patch - [read our guide](https://zuplo.com/blog/2024/10/11/what-is-json-merge-patch).
 
