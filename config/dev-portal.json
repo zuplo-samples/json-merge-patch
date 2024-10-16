@@ -2,5 +2,6 @@
   "$schema": "https://cdn.zuplo.com/schemas/dev-portal.json",
   "enabled": true,
   "enableAuthentication": false,
-  "pageTitle": "JSON Merge Patch Playground API"
+  "pageTitle": "JSON Merge Patch Playground API",
+  "faviconUrl": "https://raw.githubusercontent.com/zuplo-samples/json-merge-patch-www/refs/heads/main/app/favicon.ico?token=GHSAT0AAAAAACX5ITU5APMDYASDVKYZUXOAZYQCCJA"
 }
