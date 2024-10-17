@@ -56,5 +56,8 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
   return new Response(JSON.stringify(patchedJson), {
     status: 200,
     statusText: "OK",
+    headers: {
+      "Content-Type": "application/json"
+    }
   });
 }
